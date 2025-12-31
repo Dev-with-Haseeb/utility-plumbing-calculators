@@ -1,0 +1,86 @@
+{
+  "tool_id": "flow-rate-calculator",
+  "tool_category": "plumbing",
+  "intent_type": "calculate",
+  "tool_name": "Flow Rate Calculator",
+  "tool_purpose": "Calculates flow rate based on volume and time.",
+  "inputs": [
+    {
+      "input_id": "volume",
+      "label": "Volume",
+      "type": "number",
+      "unit": "liters",
+      "constraints": {
+        "min": 0.01,
+        "required": true
+      },
+      "default_value": 100,
+      "explanation": "Total volume of fluid."
+    },
+    {
+      "input_id": "time",
+      "label": "Time",
+      "type": "number",
+      "unit": "seconds",
+      "constraints": {
+        "min": 0.1,
+        "required": true
+      },
+      "default_value": 60,
+      "explanation": "Time taken for the volume to flow."
+    }
+  ],
+  "calculation_logic": {
+    "variables": {
+      "volume_l": "volume",
+      "time_s": "time"
+    },
+    "formula": "volume_l / time_s",
+    "rounding": {
+      "decimals": 3,
+      "method": "round"
+    }
+  },
+  "outputs": [
+    {
+      "output_id": "flow_rate_lps",
+      "label": "Flow Rate",
+      "unit": "liters per second",
+      "description": "Calculated flow rate."
+    }
+  ],
+  "assumptions": [
+    "Steady flow.",
+    "No leakage."
+  ],
+  "seo": {
+    "title_template": "Flow Rate Calculator",
+    "meta_description": "Calculate flow rate based on volume and time."
+  },
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator",
+    "inputType": [
+      "volume",
+      "time"
+    ],
+    "outputType": [
+      "flowRate"
+    ]
+  },
+  "tool_notes": [
+    {
+      "title": "How this calculator works",
+      "text": "Flow rate is calculated by dividing volume by time."
+    }
+  ],
+  "indexing": {
+    "indexable": true
+  },
+  "monetization": {
+    "ads_enabled": false
+  },
+  "distribution": {
+    "parasites_enabled": true,
+    "platforms": []
+  }
+}
