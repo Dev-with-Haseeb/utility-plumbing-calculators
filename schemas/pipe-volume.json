@@ -1,0 +1,87 @@
+{
+  "tool_id": "pipe-volume-calculator",
+  "tool_category": "plumbing",
+  "intent_type": "calculate",
+  "tool_name": "Pipe Volume Calculator",
+  "tool_purpose": "Calculates the internal volume of a cylindrical pipe based on diameter and length.",
+  "inputs": [
+    {
+      "input_id": "pipe_diameter",
+      "label": "Pipe Inner Diameter",
+      "type": "number",
+      "unit": "mm",
+      "constraints": {
+        "min": 1,
+        "required": true
+      },
+      "default_value": 100,
+      "explanation": "The internal diameter of the pipe."
+    },
+    {
+      "input_id": "pipe_length",
+      "label": "Pipe Length",
+      "type": "number",
+      "unit": "meters",
+      "constraints": {
+        "min": 0.1,
+        "required": true
+      },
+      "default_value": 5,
+      "explanation": "The total length of the pipe."
+    }
+  ],
+  "calculation_logic": {
+    "variables": {
+      "radius_m": "(pipe_diameter / 1000) / 2",
+      "length_m": "pipe_length"
+    },
+    "formula": "Math.PI * radius_m * radius_m * length_m",
+    "rounding": {
+      "decimals": 3,
+      "method": "round"
+    }
+  },
+  "outputs": [
+    {
+      "output_id": "volume_cubic_meters",
+      "label": "Pipe Volume",
+      "unit": "cubic meters",
+      "description": "Total internal volume of the pipe."
+    }
+  ],
+  "assumptions": [
+    "Pipe is perfectly cylindrical.",
+    "Internal diameter is uniform.",
+    "No obstructions inside the pipe."
+  ],
+  "seo": {
+    "title_template": "Pipe Volume Calculator",
+    "meta_description": "Calculate the internal volume of a pipe based on diameter and length."
+  },
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator",
+    "inputType": [
+      "diameter",
+      "length"
+    ],
+    "outputType": [
+      "volume"
+    ]
+  },
+  "tool_notes": [
+    {
+      "title": "How this calculator works",
+      "text": "The calculator uses the cylinder volume formula π × r² × length."
+    }
+  ],
+  "indexing": {
+    "indexable": true
+  },
+  "monetization": {
+    "ads_enabled": false
+  },
+  "distribution": {
+    "parasites_enabled": true,
+    "platforms": []
+  }
+}
