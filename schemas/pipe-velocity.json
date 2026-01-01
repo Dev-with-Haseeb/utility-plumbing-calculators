@@ -1,0 +1,92 @@
+{
+  "tool_id": "pipe-velocity-calculator",
+  "tool_category": "plumbing",
+  "intent_type": "calculate",
+  "tool_name": "Pipe Velocity Calculator",
+  "tool_purpose": "Calculates fluid velocity inside a pipe based on flow rate and pipe diameter.",
+  "inputs": [
+    {
+      "input_id": "flow_rate",
+      "label": "Flow Rate",
+      "type": "number",
+      "unit": "liters per second",
+      "constraints": {
+        "min": 0.001,
+        "required": true
+      },
+      "default_value": 1,
+      "explanation": "The volumetric flow rate of the fluid."
+    },
+    {
+      "input_id": "pipe_diameter",
+      "label": "Pipe Inner Diameter",
+      "type": "number",
+      "unit": "mm",
+      "constraints": {
+        "min": 1,
+        "required": true
+      },
+      "default_value": 50,
+      "explanation": "The internal diameter of the pipe."
+    }
+  ],
+  "calculation_logic": {
+    "variables": {
+      "area_m2": "Math.PI * Math.pow((pipe_diameter / 1000) / 2, 2)",
+      "flow_m3_s": "flow_rate / 1000"
+    },
+    "formula": "flow_m3_s / area_m2",
+    "rounding": {
+      "decimals": 3,
+      "method": "round"
+    }
+  },
+  "outputs": [
+    {
+      "output_id": "velocity",
+      "label": "Fluid Velocity",
+      "unit": "meters per second",
+      "description": "Velocity of fluid flowing inside the pipe."
+    }
+  ],
+  "assumptions": [
+    "Flow is steady and uniform.",
+    "Pipe has a circular cross-section.",
+    "Fluid properties are constant.",
+    "No frictional or entrance losses are considered."
+  ],
+  "seo": {
+    "title_template": "Pipe Velocity Calculator",
+    "meta_description": "Calculate fluid velocity in a pipe using flow rate and internal diameter."
+  },
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator",
+    "inputType": [
+      "flowRate",
+      "diameter"
+    ],
+    "outputType": [
+      "velocity"
+    ]
+  },
+  "tool_notes": [
+    {
+      "title": "How this calculator works",
+      "text": "Velocity is calculated by dividing volumetric flow rate by the pipe’s cross-sectional area."
+    },
+    {
+      "title": "When to use this calculator",
+      "text": "Use this tool when designing plumbing systems to ensure flow velocity stays within acceptable limits."
+    }
+  ],
+  "indexing": {
+    "indexable": true
+  },
+  "monetization": {
+    "ads_enabled": false
+  },
+  "distribution": {
+    "parasites_enabled": true,
+    "platforms": []
+  }
+}
