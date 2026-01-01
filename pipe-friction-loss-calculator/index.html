@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Pipe Friction Loss Calculator</title>
+  <meta name="description" content="Calculate pressure loss due to friction in a straight pipe." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="../assets/favicon.ico" />
+  <link rel="manifest" href="../assets/site.webmanifest" />
+
+
+  <link rel="stylesheet" href="../assets/base.css" />
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pipe Friction Loss Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates pressure loss due to friction in a straight pipe using flow rate, diameter, and length.",
+  "url": "undefined/pipe-friction-loss-calculator/",
+  "featureList": [
+    "Input: Flow Rate (liters per second)",
+    "Input: Pipe Inner Diameter (mm)",
+    "Input: Pipe Length (meters)",
+    "Output: Friction Loss (meters of head)"
+  ]
+}
+</script>
+
+</head>
+
+<body>
+  <main>
+    <header class="tool-header">
+      <h1>Pipe Friction Loss Calculator</h1>
+      <p class="tool-purpose">Calculate pressure loss due to friction in a straight pipe.</p>
+    </header>
+
+    
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Flow Rate (liters per second)
+          </span>
+          <input
+            type="number"
+            id="flow_rate"
+            value="1"
+            step="any"
+          />
+          <small>Volumetric flow rate of the fluid.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Pipe Inner Diameter (mm)
+          </span>
+          <input
+            type="number"
+            id="pipe_diameter"
+            value="50"
+            step="any"
+          />
+          <small>Internal diameter of the pipe.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Pipe Length (meters)
+          </span>
+          <input
+            type="number"
+            id="pipe_length"
+            value="10"
+            step="any"
+          />
+          <small>Length of the pipe section.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Friction Loss:</strong>
+          <span id="friction_loss">—</span>
+          <span>meters of head</span>
+          <small>Estimated pressure loss due to pipe friction.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>The calculator estimates friction loss using a simplified Darcy–Weisbach approach.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const flow_rate = document.getElementById("flow_rate").value;
+            
+            const pipe_diameter = document.getElementById("pipe_diameter").value;
+            
+            const pipe_length = document.getElementById("pipe_length").value;
+            
+        
+            
+            const diameter_m = pipe_diameter / 1000;
+            
+            const velocity = (flow_rate / 1000) / (Math.PI * Math.pow((pipe_diameter / 1000) / 2, 2));
+            
+        
+            let result = 0.02 * (pipe_length / diameter_m) * Math.pow(velocity, 2);
+        
+            
+            const factor = Math.pow(10, 3);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("friction_loss").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+          }
+
+          
+          document.getElementById("flow_rate").addEventListener("input", calculate);
+          
+          document.getElementById("pipe_diameter").addEventListener("input", calculate);
+          
+          document.getElementById("pipe_length").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+  </main>
+</body>
+
+</html>

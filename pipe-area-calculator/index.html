@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Pipe Area Calculator</title>
+  <meta name="description" content="Calculate the internal cross-sectional area of a pipe using diameter." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="../assets/favicon.ico" />
+  <link rel="manifest" href="../assets/site.webmanifest" />
+
+
+  <link rel="stylesheet" href="../assets/base.css" />
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pipe Cross-Sectional Area Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates the internal cross-sectional area of a pipe based on diameter.",
+  "url": "undefined/pipe-area-calculator/",
+  "featureList": [
+    "Input: Pipe Inner Diameter (mm)",
+    "Output: Pipe Area (square meters)"
+  ]
+}
+</script>
+
+</head>
+
+<body>
+  <main>
+    <header class="tool-header">
+      <h1>Pipe Area Calculator</h1>
+      <p class="tool-purpose">Calculate the internal cross-sectional area of a pipe using diameter.</p>
+    </header>
+
+    
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Pipe Inner Diameter (mm)
+          </span>
+          <input
+            type="number"
+            id="pipe_diameter"
+            value="100"
+            step="any"
+          />
+          <small>The internal diameter of the pipe.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Pipe Area:</strong>
+          <span id="area">—</span>
+          <span>square meters</span>
+          <small>Internal cross-sectional area of the pipe.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>The calculator uses the standard area formula π × r².</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const pipe_diameter = document.getElementById("pipe_diameter").value;
+            
+        
+            
+            const radius_m = (pipe_diameter / 1000) / 2;
+            
+        
+            let result = Math.PI * radius_m * radius_m;
+        
+            
+            const factor = Math.pow(10, 4);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("area").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+          }
+
+          
+          document.getElementById("pipe_diameter").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+  </main>
+</body>
+
+</html>

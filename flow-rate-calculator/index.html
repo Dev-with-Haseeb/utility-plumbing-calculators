@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Flow Rate Calculator</title>
+  <meta name="description" content="Calculate flow rate based on volume and time." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="../assets/favicon.ico" />
+  <link rel="manifest" href="../assets/site.webmanifest" />
+
+
+  <link rel="stylesheet" href="../assets/base.css" />
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Flow Rate Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates flow rate based on volume and time.",
+  "url": "undefined/flow-rate-calculator/",
+  "featureList": [
+    "Input: Volume (liters)",
+    "Input: Time (seconds)",
+    "Output: Flow Rate (liters per second)"
+  ]
+}
+</script>
+
+</head>
+
+<body>
+  <main>
+    <header class="tool-header">
+      <h1>Flow Rate Calculator</h1>
+      <p class="tool-purpose">Calculate flow rate based on volume and time.</p>
+    </header>
+
+    
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Volume (liters)
+          </span>
+          <input
+            type="number"
+            id="volume"
+            value="100"
+            step="any"
+          />
+          <small>Total volume of fluid.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Time (seconds)
+          </span>
+          <input
+            type="number"
+            id="time"
+            value="60"
+            step="any"
+          />
+          <small>Time taken for the volume to flow.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Flow Rate:</strong>
+          <span id="flow_rate_lps">—</span>
+          <span>liters per second</span>
+          <small>Calculated flow rate.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>Flow rate is calculated by dividing volume by time.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const volume = document.getElementById("volume").value;
+            
+            const time = document.getElementById("time").value;
+            
+        
+            
+            const volume_l = volume;
+            
+            const time_s = time;
+            
+        
+            let result = volume_l / time_s;
+        
+            
+            const factor = Math.pow(10, 3);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("flow_rate_lps").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+          }
+
+          
+          document.getElementById("volume").addEventListener("input", calculate);
+          
+          document.getElementById("time").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Pipe Volume Calculator</title>
+  <meta name="description" content="Calculate the internal volume of a pipe based on diameter and length." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="../assets/favicon.ico" />
+  <link rel="manifest" href="../assets/site.webmanifest" />
+
+
+  <link rel="stylesheet" href="../assets/base.css" />
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pipe Volume Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates the internal volume of a cylindrical pipe based on diameter and length.",
+  "url": "undefined/pipe-volume-calculator/",
+  "featureList": [
+    "Input: Pipe Inner Diameter (mm)",
+    "Input: Pipe Length (meters)",
+    "Output: Pipe Volume (cubic meters)"
+  ]
+}
+</script>
+
+</head>
+
+<body>
+  <main>
+    <header class="tool-header">
+      <h1>Pipe Volume Calculator</h1>
+      <p class="tool-purpose">Calculate the internal volume of a pipe based on diameter and length.</p>
+    </header>
+
+    
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Pipe Inner Diameter (mm)
+          </span>
+          <input
+            type="number"
+            id="pipe_diameter"
+            value="100"
+            step="any"
+          />
+          <small>The internal diameter of the pipe.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Pipe Length (meters)
+          </span>
+          <input
+            type="number"
+            id="pipe_length"
+            value="5"
+            step="any"
+          />
+          <small>The total length of the pipe.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Pipe Volume:</strong>
+          <span id="volume_cubic_meters">—</span>
+          <span>cubic meters</span>
+          <small>Total internal volume of the pipe.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>The calculator uses the cylinder volume formula π × r² × length.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const pipe_diameter = document.getElementById("pipe_diameter").value;
+            
+            const pipe_length = document.getElementById("pipe_length").value;
+            
+        
+            
+            const radius_m = (pipe_diameter / 1000) / 2;
+            
+            const length_m = pipe_length;
+            
+        
+            let result = Math.PI * radius_m * radius_m * length_m;
+        
+            
+            const factor = Math.pow(10, 3);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("volume_cubic_meters").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+          }
+
+          
+          document.getElementById("pipe_diameter").addEventListener("input", calculate);
+          
+          document.getElementById("pipe_length").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+  </main>
+</body>
+
+</html>

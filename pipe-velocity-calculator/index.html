@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Pipe Velocity Calculator</title>
+  <meta name="description" content="Calculate fluid velocity in a pipe using flow rate and internal diameter." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="../assets/favicon.ico" />
+  <link rel="manifest" href="../assets/site.webmanifest" />
+
+
+  <link rel="stylesheet" href="../assets/base.css" />
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pipe Velocity Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates fluid velocity inside a pipe based on flow rate and pipe diameter.",
+  "url": "undefined/pipe-velocity-calculator/",
+  "featureList": [
+    "Input: Flow Rate (liters per second)",
+    "Input: Pipe Inner Diameter (mm)",
+    "Output: Fluid Velocity (meters per second)"
+  ]
+}
+</script>
+
+</head>
+
+<body>
+  <main>
+    <header class="tool-header">
+      <h1>Pipe Velocity Calculator</h1>
+      <p class="tool-purpose">Calculate fluid velocity in a pipe using flow rate and internal diameter.</p>
+    </header>
+
+    
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Flow Rate (liters per second)
+          </span>
+          <input
+            type="number"
+            id="flow_rate"
+            value="1"
+            step="any"
+          />
+          <small>The volumetric flow rate of the fluid.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Pipe Inner Diameter (mm)
+          </span>
+          <input
+            type="number"
+            id="pipe_diameter"
+            value="50"
+            step="any"
+          />
+          <small>The internal diameter of the pipe.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Fluid Velocity:</strong>
+          <span id="velocity">—</span>
+          <span>meters per second</span>
+          <small>Velocity of fluid flowing inside the pipe.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>Velocity is calculated by dividing volumetric flow rate by the pipe’s cross-sectional area.</p>
+          
+            <h2>When to use this calculator</h2>
+            <p>Use this tool when designing plumbing systems to ensure flow velocity stays within acceptable limits.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const flow_rate = document.getElementById("flow_rate").value;
+            
+            const pipe_diameter = document.getElementById("pipe_diameter").value;
+            
+        
+            
+            const area_m2 = Math.PI * Math.pow((pipe_diameter / 1000) / 2, 2);
+            
+            const flow_m3_s = flow_rate / 1000;
+            
+        
+            let result = flow_m3_s / area_m2;
+        
+            
+            const factor = Math.pow(10, 3);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("velocity").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+          }
+
+          
+          document.getElementById("flow_rate").addEventListener("input", calculate);
+          
+          document.getElementById("pipe_diameter").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+  </main>
+</body>
+
+</html>
