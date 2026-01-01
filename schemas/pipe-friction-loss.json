@@ -1,0 +1,100 @@
+{
+  "tool_id": "pipe-friction-loss-calculator",
+  "tool_category": "plumbing",
+  "intent_type": "calculate",
+  "tool_name": "Pipe Friction Loss Calculator",
+  "tool_purpose": "Calculates pressure loss due to friction in a straight pipe using flow rate, diameter, and length.",
+  "inputs": [
+    {
+      "input_id": "flow_rate",
+      "label": "Flow Rate",
+      "type": "number",
+      "unit": "liters per second",
+      "constraints": {
+        "min": 0.001,
+        "required": true
+      },
+      "default_value": 1,
+      "explanation": "Volumetric flow rate of the fluid."
+    },
+    {
+      "input_id": "pipe_diameter",
+      "label": "Pipe Inner Diameter",
+      "type": "number",
+      "unit": "mm",
+      "constraints": {
+        "min": 1,
+        "required": true
+      },
+      "default_value": 50,
+      "explanation": "Internal diameter of the pipe."
+    },
+    {
+      "input_id": "pipe_length",
+      "label": "Pipe Length",
+      "type": "number",
+      "unit": "meters",
+      "constraints": {
+        "min": 0.1,
+        "required": true
+      },
+      "default_value": 10,
+      "explanation": "Length of the pipe section."
+    }
+  ],
+  "calculation_logic": {
+    "variables": {
+      "diameter_m": "pipe_diameter / 1000",
+      "velocity": "(flow_rate / 1000) / (Math.PI * Math.pow((pipe_diameter / 1000) / 2, 2))"
+    },
+    "formula": "0.02 * (pipe_length / diameter_m) * Math.pow(velocity, 2)",
+    "rounding": {
+      "decimals": 3,
+      "method": "round"
+    }
+  },
+  "outputs": [
+    {
+      "output_id": "friction_loss",
+      "label": "Friction Loss",
+      "unit": "meters of head",
+      "description": "Estimated pressure loss due to pipe friction."
+    }
+  ],
+  "assumptions": [
+    "Flow is steady and fully developed.",
+    "Pipe is straight and circular.",
+    "Friction factor is assumed constant."
+  ],
+  "seo": {
+    "title_template": "Pipe Friction Loss Calculator",
+    "meta_description": "Calculate pressure loss due to friction in a straight pipe."
+  },
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator",
+    "inputType": [
+      "flowRate",
+      "diameter",
+      "length"
+    ],
+    "outputType": [
+      "pressureLoss"
+    ]
+  },
+  "tool_notes": [
+    {
+      "title": "How this calculator works",
+      "text": "The calculator estimates friction loss using a simplified Darcy–Weisbach approach."
+    }
+  ],
+  "indexing": {
+    "indexable": true
+  },
+  "monetization": {
+    "ads_enabled": false
+  },
+  "distribution": {
+    "parasites_enabled": true,
+    "platforms": []
+  }
+}
