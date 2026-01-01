@@ -1,0 +1,73 @@
+{
+  "tool_id": "pipe-area-calculator",
+  "tool_category": "plumbing",
+  "intent_type": "calculate",
+  "tool_name": "Pipe Cross-Sectional Area Calculator",
+  "tool_purpose": "Calculates the internal cross-sectional area of a pipe based on diameter.",
+  "inputs": [
+    {
+      "input_id": "pipe_diameter",
+      "label": "Pipe Inner Diameter",
+      "type": "number",
+      "unit": "mm",
+      "constraints": {
+        "min": 1,
+        "required": true
+      },
+      "default_value": 100,
+      "explanation": "The internal diameter of the pipe."
+    }
+  ],
+  "calculation_logic": {
+    "variables": {
+      "radius_m": "(pipe_diameter / 1000) / 2"
+    },
+    "formula": "Math.PI * radius_m * radius_m",
+    "rounding": {
+      "decimals": 4,
+      "method": "round"
+    }
+  },
+  "outputs": [
+    {
+      "output_id": "area",
+      "label": "Pipe Area",
+      "unit": "square meters",
+      "description": "Internal cross-sectional area of the pipe."
+    }
+  ],
+  "assumptions": [
+    "Pipe cross-section is perfectly circular.",
+    "Internal diameter is uniform.",
+    "No deformation or ovality is present."
+  ],
+  "seo": {
+    "title_template": "Pipe Area Calculator",
+    "meta_description": "Calculate the internal cross-sectional area of a pipe using diameter."
+  },
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator",
+    "inputType": [
+      "diameter"
+    ],
+    "outputType": [
+      "area"
+    ]
+  },
+  "tool_notes": [
+    {
+      "title": "How this calculator works",
+      "text": "The calculator uses the standard area formula π × r²."
+    }
+  ],
+  "indexing": {
+    "indexable": true
+  },
+  "monetization": {
+    "ads_enabled": false
+  },
+  "distribution": {
+    "parasites_enabled": true,
+    "platforms": []
+  }
+}
