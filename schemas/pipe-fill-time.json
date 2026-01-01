@@ -1,0 +1,87 @@
+{
+  "tool_id": "pipe-fill-time-calculator",
+  "tool_category": "plumbing",
+  "intent_type": "calculate",
+  "tool_name": "Pipe Fill Time Calculator",
+  "tool_purpose": "Calculates how long it takes to fill a pipe based on volume and flow rate.",
+  "inputs": [
+    {
+      "input_id": "pipe_volume",
+      "label": "Pipe Volume",
+      "type": "number",
+      "unit": "liters",
+      "constraints": {
+        "min": 0.1,
+        "required": true
+      },
+      "default_value": 100,
+      "explanation": "Total internal volume of the pipe."
+    },
+    {
+      "input_id": "flow_rate",
+      "label": "Flow Rate",
+      "type": "number",
+      "unit": "liters per second",
+      "constraints": {
+        "min": 0.001,
+        "required": true
+      },
+      "default_value": 1,
+      "explanation": "Rate at which fluid enters the pipe."
+    }
+  ],
+  "calculation_logic": {
+    "variables": {
+      "volume_l": "pipe_volume",
+      "flow_lps": "flow_rate"
+    },
+    "formula": "volume_l / flow_lps",
+    "rounding": {
+      "decimals": 2,
+      "method": "round"
+    }
+  },
+  "outputs": [
+    {
+      "output_id": "fill_time",
+      "label": "Fill Time",
+      "unit": "seconds",
+      "description": "Time required to completely fill the pipe."
+    }
+  ],
+  "assumptions": [
+    "Flow rate is constant.",
+    "Pipe fills uniformly.",
+    "No leakage or air entrapment."
+  ],
+  "seo": {
+    "title_template": "Pipe Fill Time Calculator",
+    "meta_description": "Calculate how long it takes to fill a pipe based on volume and flow rate."
+  },
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator",
+    "inputType": [
+      "volume",
+      "flowRate"
+    ],
+    "outputType": [
+      "time"
+    ]
+  },
+  "tool_notes": [
+    {
+      "title": "When to use this calculator",
+      "text": "Use this calculator when estimating system fill or flush times."
+    }
+  ],
+  "indexing": {
+    "indexable": true
+  },
+  "monetization": {
+    "ads_enabled": false
+  },
+  "distribution": {
+    "parasites_enabled": true,
+    "platforms": []
+  }
+}
